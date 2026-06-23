@@ -43,7 +43,7 @@
         </select>
       </div>
       <nav id="categoria-nav" class="flex flex-wrap gap-x-5 gap-y-2 mt-8 text-xs font-semibold tracking-wide"></nav>
-      <p class="text-xs text-white/50 mt-8">Atualizado em 23/06/2026 08:08</p>
+      <p class="text-xs text-white/50 mt-8">Atualizado em 23/06/2026 13:27</p>
     </div>
   </section>
 
@@ -156,12 +156,14 @@
     function montarCard(item, destaque, categoriaLimpa) {
       var card = document.createElement('article');
       card.className = destaque
-        ? 'sm:col-span-2 bg-red-700 rounded-sm p-6 flex flex-col h-full transition-opacity hover:opacity-95'
-        : 'bg-white border-l-4 border-red-600 rounded-sm shadow-sm p-6 flex flex-col h-full hover:shadow-md transition-shadow';
+        ? 'sm:col-span-2 bg-gradient-to-br from-red-600 to-red-800 rounded-2xl shadow-md p-7 flex flex-col h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1'
+        : 'bg-white rounded-2xl shadow-sm ring-1 ring-stone-100 p-6 flex flex-col h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1';
       card.dataset.busca = (item.cat + ' ' + item.texto).toLowerCase();
 
-      var eyebrow = document.createElement('p');
-      eyebrow.className = 'text-xs font-semibold tracking-widest mb-3 ' + (destaque ? 'text-white/70' : 'text-red-600');
+      var eyebrow = document.createElement('span');
+      eyebrow.className = destaque
+        ? 'inline-block text-xs font-semibold tracking-widest mb-3 text-white/70 uppercase'
+        : 'inline-block text-xs font-semibold tracking-widest mb-3 text-red-600 bg-red-50 rounded-full px-2.5 py-1 w-fit uppercase';
       eyebrow.textContent = categoriaLimpa || item.cat;
       card.appendChild(eyebrow);
 
@@ -178,7 +180,7 @@
       card.appendChild(resumo);
 
       var rodape = document.createElement('div');
-      rodape.className = 'flex items-center justify-between gap-2 mt-auto pt-4 border-t ' + (destaque ? 'border-white/20' : 'border-stone-100');
+      rodape.className = 'flex items-center justify-between gap-2 mt-auto pt-4 border-t ' + (destaque ? 'border-white/15' : 'border-stone-100/80');
 
       var dataSpan = document.createElement('span');
       dataSpan.className = 'text-xs ' + (destaque ? 'text-white/60' : 'text-stone-500');
